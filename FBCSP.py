@@ -52,7 +52,7 @@ print(X_test.shape)
 
 # In[3]:
 
-
+# defination of bandpass filter 
 def butter_bandpass(lowcut,highcut,fs,order):
     nyq=0.5*fs
     low=lowcut/nyq
@@ -73,7 +73,7 @@ csp=CSP(n_components=2, reg=None, log=True, norm_trace=False)
 
 # In[5]:
 
-
+#acquire and combine features of different fequency bands
 features_train=[]
 features_test=[]
 freq=[8,12,16,20,24,28,32]
@@ -100,7 +100,7 @@ print(features_test.shape)
 
 # In[110]:
 
-
+#get the best k features base on MIBIF algorithm
 select_K=sklearn.feature_selection.SelectKBest(mutual_info_classif,k=10).fit(features_train,y_train)
 New_train=select_K.transform(features_train)
 #np.random.shuffle(New_train)
