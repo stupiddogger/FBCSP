@@ -98,7 +98,7 @@ print(features_test.shape)
     
 
 
-# In[110]:
+# In[6]:
 
 #get the best k features base on MIBIF algorithm
 select_K=sklearn.feature_selection.SelectKBest(mutual_info_classif,k=10).fit(features_train,y_train)
@@ -113,23 +113,11 @@ X_select_train = ss.fit_transform(New_train,y_train)
 X_select_test = ss.fit_transform(New_test)
 
 
-# In[119]:
+# In[7]:
 
 
 #calssify
 from sklearn.svm import SVC
-#from sklearn.grid_search import GridSearchCV
-#pipe_svc=([('clf',SVC(random_state=1))])
-#param_range=[0.001,0.01,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,10,100,1000]
-#param_grid=[{'clf_C':param_range,
-   #         'clf_kernel':['linear']},
-  #          {'clf_C':param_range,
- #           'clf_kernel':['rbf']}]
-#gs= GridSearchCV(estimator=pipe_svc,param_grid=param_grid,scoring='accuracy')
-#gs=gs.fit(X_train,y_train)
-#print(gs.best_score_)
-#print(gs.best_params_)
-
 clf=svm.SVC(C=0.8,kernel='rbf')
 clf.fit(X_select_train,y_train)
 y_pred=clf.predict(X_select_test)
